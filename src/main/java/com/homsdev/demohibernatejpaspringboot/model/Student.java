@@ -12,8 +12,9 @@ public class Student {
 
     /**
      * The Entity with the data owns the relation
+     * All OneToOne Mappings apply eager strategy on fetching resources
      */
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
     public Student() {

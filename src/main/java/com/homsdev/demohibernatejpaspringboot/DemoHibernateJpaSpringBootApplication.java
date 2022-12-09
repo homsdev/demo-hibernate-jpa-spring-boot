@@ -37,6 +37,6 @@ public class DemoHibernateJpaSpringBootApplication implements CommandLineRunner 
         //Remove course
         courseRepository.deleteById(1L);
          */
-        studentRepository.insertDummyStudentWithPassport();
+        //studentRepository.insertDummyStudentWithPassport();
     }
 }

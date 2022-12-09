@@ -8,13 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
-@Repository
-@Transactional
 /**
  * Add this annotation @Transactional to indicate every method inside is transactional
  * If Something fails everything must be rolled back
- * Creates one "Persistence Context" (Session) From Begin to end
+ * Creates one "Persistence Context" (Session) From Begin to end in every method
  */
+@Repository
+@Transactional
 public class StudentRepository {
     @Autowired
     private EntityManager em;
@@ -23,6 +23,7 @@ public class StudentRepository {
         em.persist(student);
     }
 
+    //@Transactional //If no added persistence context start an closes when E.M. finishes the task
     public Student findById(Long id) {
         return em.find(Student.class, id);
     }
@@ -38,6 +39,10 @@ public class StudentRepository {
         em.remove(studentToRemove);
     }
 
+    /**
+     * Before linking an entity from another table it needs
+     * to be already in te Persistence Context
+     */
     public void insertDummyStudentWithPassport(){
         Student student = new Student("Jacob");
         Passport passport = new Passport("XLXXX1");
