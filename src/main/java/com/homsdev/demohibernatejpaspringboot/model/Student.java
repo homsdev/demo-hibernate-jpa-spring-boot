@@ -1,6 +1,7 @@
 package com.homsdev.demohibernatejpaspringboot.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -16,6 +17,13 @@ public class Student {
      */
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
+
+    /**
+     * In ManyToMany relationships if owner is no specified two tables will be created
+     * The owner of the relationship could be whichever of both entities
+     */
+    @ManyToMany
+    private List<Course> courses;
 
     public Student() {
     }
@@ -46,6 +54,13 @@ public class Student {
 
     public void setPassport(Passport passport) {
         this.passport = passport;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+    public void addCourse(Course course){
+        this.courses.add(course);
     }
 
     @Override

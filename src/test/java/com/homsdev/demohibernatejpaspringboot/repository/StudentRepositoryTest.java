@@ -36,7 +36,7 @@ class StudentRepositoryTest {
 
     @Test
     @Transactional
-    @DirtiesContext
+    @DirtiesContext//Used to rollback all changes at the end of test
     public void testFindStudentByIdLazy(){
         Student student = studentRepository.findById(201L);
         String pass= student.getPassport().getNumber();
